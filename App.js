@@ -12,12 +12,32 @@ LocaleConfig.locales['fr'] = {
 LocaleConfig.defaultLocale = 'fr';
 
 class App extends Component {
+  constructor(){
+    super()
+    this.state = {
+      markedDate: {}
+    }
+  }
+
+  getFormatDate(){
+    const date = new Date()
+    const getYears = date.getFullYear()
+    const getMonth = date.getMonth()
+    console.log(getMonth)
+  }
+
+  handleDayPress(day){
+    this.getFormatDate()
+  }
 
   render() {
+    console.log(this.state.markedDate)
     return (
       <View>
         <Calendar
           onVisibleMonthsChange={(months) => {console.log('now these months are visible', months);}}
+          onDayPress={(day) => this.handleDayPress(day.dateString)}
+          markedDates={this.state.markedDate}
         />
       </View>
     );
