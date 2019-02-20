@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
-import { CalendarList, LocaleConfig } from 'react-native-calendars';
+import { View, Text, StyleSheet } from 'react-native';
+import { LocaleConfig, Calendar } from 'react-native-calendars';
 
 LocaleConfig.locales['fr'] = {
   monthNames: ['January','February','March','April','May','June','July','August','September','October','November','December'],
@@ -16,14 +16,18 @@ class App extends Component {
   render() {
     return (
       <View>
-        <CalendarList
-          horizontal={true}
+        <Calendar
           onVisibleMonthsChange={(months) => {console.log('now these months are visible', months);}}
-          pagingEnabled={true}
         />
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  }
+})
 
 export default App;
