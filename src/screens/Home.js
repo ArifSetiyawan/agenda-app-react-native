@@ -9,8 +9,8 @@ import { setModalVisible } from '../redux/actions/home';
 
 class Home extends Component {
 
-  handleVisibleModal(visible){
-    this.props.dispatch(setModalVisible(visible))
+  handleVisibleModal(visible,modal){
+    this.props.dispatch(setModalVisible(visible,modal))
   }
 
   render() {
@@ -18,7 +18,7 @@ class Home extends Component {
       <View style={styles.container}>
         <CalendarComponent />
         <ModalComponent />
-        <TouchableOpacity onPress={() => this.handleVisibleModal(true)} style={styles.button}>
+        <TouchableOpacity onPress={() => this.handleVisibleModal(true,'addEvent')} style={styles.button}>
           <Icon name='plus' type='AntDesign' style={styles.iconButton} />
         </TouchableOpacity>
       </View>

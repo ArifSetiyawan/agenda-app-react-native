@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { LocaleConfig, Calendar } from 'react-native-calendars';
 import { connect } from 'react-redux';
 
-import { getDateNow } from '../redux/actions/home';
+import { getDateNow, setModalVisible } from '../redux/actions/home';
 
 LocaleConfig.locales['fr'] = {
   monthNames: ['January','February','March','April','May','June','July','August','September','October','November','December'],
@@ -33,6 +33,10 @@ class CalendarComponent extends Component {
 
   componentDidMount() {
     this.props.dispatch(getDateNow(this.getFormatDateNow()))
+  }
+
+  handleDayPress(day){
+    this.props.dispatch(setModalVisible(true,'listEvents'))
   }
 
   render() {

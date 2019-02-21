@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import { setModalVisible } from '../redux/actions/home';
 import FormAddEvent from './FormAddEvent';
+import EventList from './EventList';
 
 class ModalComponent extends Component {
 
@@ -15,12 +16,16 @@ class ModalComponent extends Component {
     return (
       <Modal
         visible={this.props.home.modalVisible}
-        animationType='fade'
+        animationType={this.props.home.modal==='addEvent'? 'fade':'slide'}
         transparent={true}
         onRequestClose={() => this.handleVisibleModal(false)}
       >
         <View style={styles.container}>
-          <FormAddEvent />
+          {this.props.home.modal==='addEvent'? (
+            <FormAddEvent />
+          ):(
+            <EventList />
+          )}
         </View>
       </Modal>
     );
