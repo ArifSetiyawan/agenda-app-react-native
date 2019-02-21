@@ -1,15 +1,70 @@
 import React, { Component } from 'react';
-import { ScrollView, Text, View } from 'react-native';
+import { ScrollView, Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { Icon } from 'native-base';
+import { connect } from 'react-redux';
+
+import { setModalVisible } from '../redux/actions/home';
 
 class EventList extends Component {
 
+  handleVisibleModal(visible,modal = ''){
+    this.props.dispatch(setModalVisible(visible,modal))
+  }
+
   render() {
     return (
-      <View>
-        <Text>Event</Text>
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <TouchableOpacity style={styles.buttonClose} onPress={() => this.handleVisibleModal(false)}>
+            <Icon name='down' type='AntDesign' style={styles.iconButtonClose} />
+          </TouchableOpacity>
+          <Text style={styles.titleHeader}>20 February 2019</Text>
+        </View>
+        <TouchableOpacity onPress={() => this.handleVisibleModal(true,'addEvent')} style={styles.button}>
+          <Icon name='plus' type='AntDesign' style={styles.iconButton} />
+        </TouchableOpacity>
       </View>
     );
   }
 }
 
-export default EventList;
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#f7f7f7',
+    flex: 1,
+    width: '100%'
+  },
+  header: {
+    flexDirection: 'row',
+    height: 50,
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    paddingLeft: 10
+  },
+  titleHeader: {
+    fontWeight: 'bold'
+  },
+  buttonClose: {
+    marginRight: 10
+  },
+  iconButtonClose: {
+    color: '#f39c12',
+    fontSize: 20
+  },
+  button: {
+    backgroundColor: '#2ecc71',
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    bottom: 30,
+    right: 30
+  },
+  iconButton: {
+    color: '#fff'
+  }
+})
+
+export default connect()(EventList);

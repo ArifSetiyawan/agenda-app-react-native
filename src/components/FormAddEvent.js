@@ -20,9 +20,13 @@ class FormAddEvent extends Component {
             <Text style={styles.textButton}>Cancel</Text>
           </TouchableOpacity>
           <Text style={styles.titleHeader}>New Event</Text>
-          <TouchableOpacity>
-            <Text style={[styles.textButton, {textAlign: 'right'}]}>Add</Text>
-          </TouchableOpacity>
+          {this.props.pristine? (
+            <Text style={[styles.textButton, {textAlign: 'right', color: '#dadada'}]}>Add</Text>
+          ):(
+            <TouchableOpacity>
+              <Text style={[styles.textButton, {textAlign: 'right'}]}>Add</Text>
+            </TouchableOpacity>
+          )}
         </View>
         <View style={styles.form}>
           <Field
@@ -48,7 +52,8 @@ class FormAddEvent extends Component {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
-    borderRadius: 5
+    borderRadius: 5,
+    width: '80%'
   },
   header: {
     borderBottomColor: '#ababab',
