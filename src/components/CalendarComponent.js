@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { LocaleConfig, Calendar } from 'react-native-calendars';
 import { connect } from 'react-redux';
 
-import { getDateNow } from '../redux/actions/calendar';
+import { getDateNow } from '../redux/actions/home';
 
 LocaleConfig.locales['fr'] = {
   monthNames: ['January','February','March','April','May','June','July','August','September','October','November','December'],
@@ -39,14 +39,14 @@ class CalendarComponent extends Component {
     return (
       <Calendar
         onDayPress={(day) => this.handleDayPress(day.dateString)}
-        markedDates={this.props.calendar.markedDate}
+        markedDates={this.props.home.markedDate}
       />
     );
   }
 }
 
 const mapStateToProps = (state) => ({
-  calendar: state.calendar
+  home: state.home
 })
 
 export default connect(mapStateToProps)(CalendarComponent);

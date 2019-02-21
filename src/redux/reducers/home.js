@@ -2,7 +2,7 @@ const initialState = {
   markedDate: {}
 }
 
-const calendarReducer = (state = initialState, action) => {
+const homeReducer = (state = initialState, action) => {
   switch(action.type) {
     case 'GET_DATE_NOW':
       return {...state, markedDate: action.payload}
@@ -11,4 +11,4 @@ const calendarReducer = (state = initialState, action) => {
   }
 };
 
-export default calendarReducer;
+export default homeReducer;

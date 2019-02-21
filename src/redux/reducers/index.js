@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 
-import calendarReducer from './calendar';
+import homeReducer from './home';
 
 const reducers = combineReducers({
   form: formReducer,
-  calendar: calendarReducer
+  home: homeReducer
 });
 
 export default reducers;
