@@ -19,19 +19,40 @@ class App extends Component {
     }
   }
 
-  getFormatDate(){
-    const date = new Date()
-    const getYears = date.getFullYear()
-    const getMonth = date.getMonth()
-    console.log(getMonth)
+  getFormatDateNow(){
+    let date = new Date()
+    date = date.toLocaleDateString('id')
+    date = date.split('/')
+    let getDate = date[0]
+    if(getDate.length===1){
+      getDate= `0${getDate}`
+    }
+    let getMonth = date[1]
+    if(getMonth.length===1){
+      getMonth= `0${getMonth}`
+    }
+    const getYear = date[2]
+    return `${getYear}-${getMonth}-${getDate}`
+  }
+
+  componentDidMount() {
+    this.setState({
+      markedDate:{
+        [this.getFormatDateNow()]: {selected: true}
+      }
+    })
   }
 
   handleDayPress(day){
-    this.getFormatDate()
+    this.setState({
+      markedDate:{
+        [day]: {selected: true},
+        [this.getFormatDateNow()]: {selected: true}
+      }
+    })
   }
 
   render() {
-    console.log(this.state.markedDate)
     return (
       <View>
         <Calendar
