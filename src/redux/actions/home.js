@@ -7,6 +7,12 @@ const getDateNow = (date) => ({
   }
 });
 
+const setModalVisible = (visible) => ({
+  type: 'SET_MODAL_VISIBLE',
+  payload: visible
+})
+
 export {
-  getDateNow
+  getDateNow,
+  setModalVisible
 }
