@@ -1,7 +1,8 @@
 const initialState = {
   markedDate: {},
   modalVisible: false,
-  modal: ''
+  modal: '',
+  event: []
 }
 
 const homeReducer = (state = initialState, action) => {

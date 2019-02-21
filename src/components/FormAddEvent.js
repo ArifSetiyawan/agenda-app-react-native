@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 
 import { setModalVisible } from '../redux/actions/home';
+import Input from './redux-form/Input';
 
 class FormAddEvent extends Component {
 
@@ -23,15 +25,19 @@ class FormAddEvent extends Component {
           </TouchableOpacity>
         </View>
         <View style={styles.form}>
-          <TextInput
+          <Field
+            name='name'
             placeholder='name'
-            style={styles.input}
+            height={40}
+            component={Input}
           />
-          <TextInput
+          <Field
+            name='description'
             placeholder='description'
-            style={[styles.input, {height: 100}]}
+            height={100}
             multiline={true}
             numberOfLines={5}
+            component={Input}
           />
         </View>
       </View>
@@ -62,13 +68,7 @@ const styles = StyleSheet.create({
   },
   form: {
     paddingHorizontal: 5
-  },
-  input: {
-    borderRadius: 5,
-    borderBottomColor: '#f0f0f0',
-    borderBottomWidth: 1,
-    height: 40
   }
 })
 
-export default connect()(FormAddEvent);
+export default reduxForm({form: 'addEvent'})(connect()(FormAddEvent));
