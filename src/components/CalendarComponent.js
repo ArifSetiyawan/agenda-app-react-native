@@ -36,7 +36,7 @@ class CalendarComponent extends Component {
   }
 
   handleDayPress(day){
-    this.props.dispatch(setModalVisible(true,'listEvents'))
+    this.props.dispatch(setModalVisible(true,'listEvents',day))
   }
 
   render() {

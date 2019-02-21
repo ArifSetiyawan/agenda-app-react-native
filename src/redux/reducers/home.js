@@ -1,16 +1,18 @@
 const initialState = {
   markedDate: {},
+  dateNow: '',
   modalVisible: false,
   modal: '',
+  selectedDate: '',
   event: []
 }
 
 const homeReducer = (state = initialState, action) => {
   switch(action.type) {
     case 'GET_DATE_NOW':
-      return {...state, markedDate: action.payload}
+      return {...state, markedDate: action.payload.markedDate, dateNow: action.payload.date}
     case 'SET_MODAL_VISIBLE':
-      return {...state, modalVisible: action.payload.visible, modal: action.payload.modal}
+      return {...state, modalVisible: action.payload.visible, modal: action.payload.modal, selectedDate: action.payload.date}
     default:
       return state;
   }

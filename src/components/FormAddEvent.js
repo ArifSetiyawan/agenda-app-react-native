@@ -43,6 +43,7 @@ class FormAddEvent extends Component {
             numberOfLines={5}
             component={Input}
           />
+          <Text style={{textAlign: 'center', marginVertical: 10}}>{this.props.home.selectedDate}</Text>
         </View>
       </View>
     );
@@ -76,4 +77,8 @@ const styles = StyleSheet.create({
   }
 })
 
-export default reduxForm({form: 'addEvent'})(connect()(FormAddEvent));
+const mapStateToProps = (state) => ({
+  home: state.home
+})
+
+export default reduxForm({form: 'addEvent'})(connect(mapStateToProps)(FormAddEvent));

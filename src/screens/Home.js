@@ -9,8 +9,8 @@ import { setModalVisible } from '../redux/actions/home';
 
 class Home extends Component {
 
-  handleVisibleModal(visible,modal){
-    this.props.dispatch(setModalVisible(visible,modal))
+  handleVisibleModal(visible,modal,date){
+    this.props.dispatch(setModalVisible(visible,modal,date))
   }
 
   render() {
@@ -18,7 +18,7 @@ class Home extends Component {
       <View style={styles.container}>
         <CalendarComponent />
         <ModalComponent />
-        <TouchableOpacity onPress={() => this.handleVisibleModal(true,'addEvent')} style={styles.button}>
+        <TouchableOpacity onPress={() => this.handleVisibleModal(true,'addEvent',this.props.home.dateNow)} style={styles.button}>
           <Icon name='plus' type='AntDesign' style={styles.iconButton} />
         </TouchableOpacity>
       </View>
@@ -46,4 +46,8 @@ const styles = StyleSheet.create({
   }
 })
 
-export default connect()(Home);
+const mapStateToProps = (state) => ({
+  home: state.home
+})
+
+export default connect(mapStateToProps)(Home);

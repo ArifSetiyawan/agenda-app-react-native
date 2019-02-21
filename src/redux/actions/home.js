@@ -1,17 +1,21 @@
 const getDateNow = (date) => ({
   type: 'GET_DATE_NOW',
   payload: {
-    [date]: {
-      selected: true
-    }
+    markedDate: {
+      [date]: {
+        selected: true
+      }
+    },
+    date
   }
 });
 
-const setModalVisible = (visible,modal = '') => ({
+const setModalVisible = (visible,modal = '',date) => ({
   type: 'SET_MODAL_VISIBLE',
   payload: {
     visible,
-    modal
+    modal,
+    date
   }
 })
 
