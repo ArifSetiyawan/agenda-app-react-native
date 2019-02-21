@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Modal, View, Text, TouchableOpacity } from 'react-native';
+import { Modal, View, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 
 import { setModalVisible } from '../redux/actions/home';
+import FormAddEvent from './FormAddEvent';
 
 class ModalComponent extends Component {
 
@@ -14,17 +15,26 @@ class ModalComponent extends Component {
     return (
       <Modal
         visible={this.props.home.modalVisible}
-        animationType='slide'
+        animationType='fade'
         transparent={true}
         onRequestClose={() => this.handleVisibleModal(false)}
       >
-        <TouchableOpacity onPress={() => this.handleVisibleModal(false)}>
-          <Text>Close</Text>
-        </TouchableOpacity>
+        <View style={styles.container}>
+          <FormAddEvent />
+        </View>
       </Modal>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    paddingHorizontal: 40,
+    backgroundColor: 'rgba(0, 0, 0, 0.1)'
+  }
+})
 
 const mapStateTopProps = (state) => ({
   home: state.home
