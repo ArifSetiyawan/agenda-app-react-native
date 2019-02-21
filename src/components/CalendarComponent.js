@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { LocaleConfig, Calendar } from 'react-native-calendars';
+import { connect } from 'react-redux';
+
+import { getDateNow } from '../redux/actions/calendar';
 
 LocaleConfig.locales['fr'] = {
   monthNames: ['January','February','March','April','May','June','July','August','September','October','November','December'],
@@ -11,13 +14,6 @@ LocaleConfig.locales['fr'] = {
 LocaleConfig.defaultLocale = 'fr';
 
 class CalendarComponent extends Component {
-
-  constructor(){
-    super()
-    this.state = {
-      markedDate: {}
-    }
-  }
 
   getFormatDateNow(){
     let date = new Date()
@@ -36,21 +32,21 @@ class CalendarComponent extends Component {
   }
 
   componentDidMount() {
-    this.setState({
-      markedDate:{
-        [this.getFormatDateNow()]: {selected: true}
-      }
-    })
+    this.props.dispatch(getDateNow(this.getFormatDateNow()))
   }
 
   render() {
     return (
       <Calendar
         onDayPress={(day) => this.handleDayPress(day.dateString)}
-        markedDates={this.state.markedDate}
+        markedDates={this.props.calendar.markedDate}
       />
     );
   }
 }
 
-export default CalendarComponent;
+const mapStateToProps = (state) => ({
+  calendar: state.calendar
+})
+
+export default connect(mapStateToProps)(CalendarComponent);
