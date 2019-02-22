@@ -12,8 +12,13 @@ class EventList extends Component {
   }
 
   _renderItem = ({item}) => (
-    <View>
-      <Text>{item.name}</Text>
+    <View style={styles.containerItem}>
+      <View style={styles.headerItem}>
+        <Text>{item.name}</Text>
+      </View>
+      <View style={styles.contentItem}>
+        <Text style={{fontSize: 12}}>{item.description}</Text>
+      </View>
     </View>
   )
 
@@ -86,6 +91,22 @@ const styles = StyleSheet.create({
   },
   iconButton: {
     color: '#fff'
+  },
+  containerItem: {
+    backgroundColor: '#fff',
+    borderRadius: 5,
+    marginTop: 10,
+    alignSelf: 'center',
+    width: '90%'
+  },
+  headerItem: {
+    borderBottomColor: '#ededed',
+    borderBottomWidth: 0.5,
+    justifyContent: 'center',
+    padding: 10
+  },
+  contentItem: {
+    padding: 10,
   }
 })
 
