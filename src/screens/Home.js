@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { View, TouchableOpacity, Text, StyleSheet, StatusBar } from 'react-native';
 import { Icon } from 'native-base';
 import { connect } from 'react-redux';
 
@@ -16,6 +16,7 @@ class Home extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <StatusBar backgroundColor='#3498db' barStyle="light-content" />
         <View style={styles.header}>
           <Text style={styles.titleHeader}>Agenda App</Text>
         </View>
