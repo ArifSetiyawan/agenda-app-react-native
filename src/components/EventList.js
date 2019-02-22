@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity, FlatList, Modal} from 'react-native';
 import { Icon } from 'native-base';
 import { connect } from 'react-redux';
 
-import { setModalVisible } from '../redux/actions/home';
+import { setModalVisibleInEventList, setModalVisible } from '../redux/actions/home';
+import FormAddEvent from './FormAddEvent';
 
 class EventList extends Component {
 
-  handleVisibleModal(visible,modal = '',date){
-    this.props.dispatch(setModalVisible(visible,modal,date))
+  handleVisibleModal(visible,date){
+    this.props.dispatch(setModalVisibleInEventList(visible,date))
+  }
+
+  handleCloseModal(){
+    this.props.dispatch(setModalVisible(false))
   }
 
   _renderItem = ({item}) => (
@@ -31,7 +36,7 @@ class EventList extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.header}>
-          <TouchableOpacity style={styles.buttonClose} onPress={() => this.handleVisibleModal(false)}>
+          <TouchableOpacity style={styles.buttonClose} onPress={() => this.handleCloseModal()}>
             <Icon name='down' type='AntDesign' style={styles.iconButtonClose} />
           </TouchableOpacity>
           <Text style={styles.titleHeader}>{this.props.home.selectedDate}</Text>
@@ -47,9 +52,19 @@ class EventList extends Component {
             renderItem={this._renderItem}
           />
         )}
-        <TouchableOpacity onPress={() => this.handleVisibleModal(true,'addEvent',this.props.home.selectedDate)} style={styles.button}>
+        <TouchableOpacity onPress={() => this.handleVisibleModal(true,this.props.home.selectedDate)} style={styles.button}>
           <Icon name='plus' type='AntDesign' style={styles.iconButton} />
         </TouchableOpacity>
+        <Modal
+          visible={this.props.home.modalVisibleInEventList}
+          animationType='fade'
+          transparent={true}
+          onRequestClose={() => this.handleVisibleModal(false, this.props.home.selectedDate)}
+        >
+          <View style={styles.containerModal}>
+            <FormAddEvent />
+          </View>
+        </Modal>
       </View>
     );
   }
@@ -107,6 +122,12 @@ const styles = StyleSheet.create({
   },
   contentItem: {
     padding: 10,
+  },
+  containerModal: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.1)'
   }
 })
 

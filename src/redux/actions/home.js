@@ -19,6 +19,14 @@ const setModalVisible = (visible,modal = '',date) => ({
   }
 })
 
+const setModalVisibleInEventList = (visible,date) => ({
+  type: 'SET_MODAL_VISIBLE_IN_EVENT_LIST',
+  payload: {
+    visible,
+    date
+  }
+})
+
 const addEvent = (value,date) => ({
   type: 'ADD_EVENT',
   payload: {
@@ -31,5 +39,6 @@ const addEvent = (value,date) => ({
 export {
   getDateNow,
   setModalVisible,
-  addEvent
+  addEvent,
+  setModalVisibleInEventList
 }
