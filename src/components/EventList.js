@@ -29,9 +29,11 @@ class EventList extends Component {
 
   render() {
 
-    const events = this.props.home.events.filter(item => {
+    let events = this.props.home.events.filter(item => {
       return item.date===this.props.home.selectedDate
     })
+
+    events = events.reverse()
 
     return (
       <View style={styles.container}>
