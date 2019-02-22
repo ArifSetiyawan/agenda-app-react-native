@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
 import { Icon } from 'native-base';
 import { connect } from 'react-redux';
 
@@ -11,7 +11,18 @@ class EventList extends Component {
     this.props.dispatch(setModalVisible(visible,modal,date))
   }
 
+  _renderItem = ({item}) => (
+    <View>
+      <Text>{item.name}</Text>
+    </View>
+  )
+
   render() {
+
+    const events = this.props.home.events.filter(item => {
+      return item.date===this.props.home.selectedDate
+    })
+
     return (
       <View style={styles.container}>
         <View style={styles.header}>
@@ -20,6 +31,17 @@ class EventList extends Component {
           </TouchableOpacity>
           <Text style={styles.titleHeader}>{this.props.home.selectedDate}</Text>
         </View>
+        {events.length===0? (
+          <View style={{flex: 1, alignItems: 'center', marginTop: '50%'}}>
+            <Text style={{textAlign: 'center'}}>Empty</Text>
+          </View>
+        ):(
+          <FlatList
+            data={events}
+            keyExtractor={(item,index) => index.toString()}
+            renderItem={this._renderItem}
+          />
+        )}
         <TouchableOpacity onPress={() => this.handleVisibleModal(true,'addEvent',this.props.home.selectedDate)} style={styles.button}>
           <Icon name='plus' type='AntDesign' style={styles.iconButton} />
         </TouchableOpacity>
