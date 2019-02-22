@@ -13,6 +13,8 @@ const homeReducer = (state = initialState, action) => {
       return {...state, markedDate: action.payload.markedDate, dateNow: action.payload.date}
     case 'SET_MODAL_VISIBLE':
       return {...state, modalVisible: action.payload.visible, modal: action.payload.modal, selectedDate: action.payload.date}
+    case 'ADD_EVENT':
+      return {...state, event: [...state.event, action.payload]}
     default:
       return state;
   }

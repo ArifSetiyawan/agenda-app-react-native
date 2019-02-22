@@ -3,13 +3,18 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 
-import { setModalVisible } from '../redux/actions/home';
+import { setModalVisible, addEvent } from '../redux/actions/home';
 import Input from './redux-form/Input';
 
 class FormAddEvent extends Component {
 
   handleVisibleModal(visible){
     this.props.dispatch(setModalVisible(visible))
+  }
+
+  handleAdd = (value) => {
+    this.props.dispatch(addEvent(value,this.props.home.selectedDate))
+    this.props.dispatch(setModalVisible(false))
   }
 
   render() {
@@ -23,7 +28,7 @@ class FormAddEvent extends Component {
           {this.props.pristine? (
             <Text style={[styles.textButton, {textAlign: 'right', color: '#dadada'}]}>Add</Text>
           ):(
-            <TouchableOpacity>
+            <TouchableOpacity onPress={this.props.handleSubmit(this.handleAdd)}>
               <Text style={[styles.textButton, {textAlign: 'right'}]}>Add</Text>
             </TouchableOpacity>
           )}
