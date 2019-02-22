@@ -16,6 +16,9 @@ class Home extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <View style={styles.header}>
+          <Text style={styles.titleHeader}>Agenda App</Text>
+        </View>
         <CalendarComponent />
         <ModalComponent />
         <TouchableOpacity onPress={() => this.handleVisibleModal(true,'addEvent',this.props.home.dateNow)} style={styles.button}>
@@ -28,7 +31,8 @@ class Home extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: '#f7f7f7'
   },
   button: {
     backgroundColor: '#2ecc71',
@@ -43,6 +47,18 @@ const styles = StyleSheet.create({
   },
   iconButton: {
     color: '#fff'
+  },
+  header: {
+    paddingHorizontal: 15,
+    height: 50,
+    justifyContent: 'center',
+    backgroundColor: '#fff',
+    borderBottomColor: '#e4e4e4',
+    borderBottomWidth: 0.5
+  },
+  titleHeader: {
+    fontWeight: 'bold',
+    fontSize: 18
   }
 })
 

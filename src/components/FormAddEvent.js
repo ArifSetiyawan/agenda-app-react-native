@@ -30,7 +30,7 @@ class FormAddEvent extends Component {
       <View style={styles.container}>
         <View style={styles.header}>
           <TouchableOpacity onPress={() => this.handleVisibleModal(false)}>
-            <Text style={styles.textButton}>Cancel</Text>
+            <Text style={[styles.textButton, {color: '#e74c3c'}]}>Cancel</Text>
           </TouchableOpacity>
           <Text style={styles.titleHeader}>New Event</Text>
           {this.props.pristine? (
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   textButton: {
-    color: '#f39c12',
+    color: '#2ecc71',
     width: 50
   },
   form: {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { LocaleConfig, Calendar } from 'react-native-calendars';
+import { LocaleConfig, Calendar, CalendarList } from 'react-native-calendars';
 import { connect } from 'react-redux';
 
 import { getDateNow, setModalVisible } from '../redux/actions/home';
@@ -41,7 +41,7 @@ class CalendarComponent extends Component {
 
   render() {
     return (
-      <Calendar
+      <CalendarList
         onDayPress={(day) => this.handleDayPress(day.dateString)}
         markedDates={this.props.home.markedDate}
       />
